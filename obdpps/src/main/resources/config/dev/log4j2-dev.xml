@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="300">
+    <properties>
+        <property name="LOG_HOME">/mnt/sdc/logs</property>
+        <property name="LOG_PATH">${LOG_HOME}/obdpps_dev_log/</property>
+    </properties>
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} (%rms) - %msg%n" />
+        </Console>
+
+        <RollingRandomAccessFile name="RollingRandomAccessFile"
+                                 fileName="${LOG_PATH}/obdpps.log"
+                                 filePattern="${LOG_PATH}/$${date:yyyy-MM-dd}/obdpps-%d{yyyy-MM-dd}-%i.log.gz">
+            <!--<Filters>-->
+                <!--<ThresholdFilter level="debug" onMatch="DENY" onMismatch="NEUTRAL" />-->
+                <!--<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />-->
+            <!--</Filters>-->
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+                <SizeBasedTriggeringPolicy size="100 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile>
+
+    </Appenders>
+  
+    <Loggers>
+        <logger name="io.netty" level="ALL"/>
+        <logger name="com.mchange" level="ALL"/>
+        <logger name="com.zaxxer" level="ALL"/>
+        <Logger name="io.vertx" level="ALL"/>
+        <logger name="com.gzfns" level="ALL"/>
+
+        <Root level="ALL">  
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingRandomAccessFile" />
+        </Root>  
+    </Loggers>  
+</Configuration>

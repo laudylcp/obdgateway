@@ -1,0 +1,66 @@
+{
+  "tcpServer": {
+    "instances": 1,
+    "port": 30013,
+    "log_activity":false
+  },
+  "httpServer": {
+    "instances": 1,
+    "address":"0.0.0.0",
+    "port": 8000
+  },
+  "mysql": {
+    "dbname":"obd",
+    "ip":"192.168.1.9",
+    "port":10006,
+    "user":"obdgateway",
+    "password":"obd098Gateway,./gzfns.com",
+    "max_pool_size":100,
+    "usessl":false
+  },
+  "redis": {
+    "ip":"192.168.1.9",
+    "port":6376,
+    "password":"obdGateway123gzfns.com",
+    "encoding":"UTF-8",
+    "tcpkeepalive":true,
+    "tcpnodelay":true
+  },
+  "event-bus": {
+    "senddowncommand.address": "com.gzfns.command.senddown"
+  },
+  "rabbitmq": {
+    "consumer.instances": 1,
+    "host": "127.0.0.1",
+    "port": 8672,
+    "user": "obdgateway",
+    "password": "obdGateway,./gzfns.com123"
+  },
+  "raw-data": {
+    "is-write":true,
+    "dir":"/mnt/sdc/logs/obdpps_prod_log/RawData"
+  },
+  "heart-beat-interval": 600000,
+  "location-service": {
+    "instances": 1,
+    "location_batch_size": 20,
+    "immed-save-timer-interval": 10000
+  },
+  "alarm-service": {
+    "instances": 1,
+    "offline-alarm-interval-starting": 300000,
+    "offline-alarm-interval": 180000,
+    "external-voltage-alarm-after-times": 2,
+    "external-voltage-threshold-value": 10000,
+    "power-off-alarm-after-times": 2
+  },
+  "common-service": {
+    "instances": 1,
+    "heartbeat_batch_size": 50,
+    "immed-save-timer-interval": 5000
+  },
+  "base-station-service": {
+    "host": "minigps.net",
+    "uri": "/cw"
+  }
+}
